@@ -42,7 +42,7 @@ The project demonstrates modern Android development best practices:
    ```bash
    git clone https://github.com/yourusername/GalaxyGram.git
 
-2. Obtain a NASA API key from api.nasa.govand add it to local.properties
+2. Obtain a NASA API key from api.nasa.gov and add it to local.properties
 
 3. Open the project in Android Studio and run it on a device or emulator (API 24+).
 
