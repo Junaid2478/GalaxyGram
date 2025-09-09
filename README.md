@@ -36,12 +36,6 @@ The project demonstrates modern Android development best practices:
 
 ---
 
-## Getting Started
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/# GalaxyGram
-
 GalaxyGram is an Android app built with Kotlin, Jetpack Compose, Hilt, and Retrofit.  
 It connects to NASA’s Astronomy Picture of the Day (APOD) API and provides a feed of daily images with detailed information.
 
