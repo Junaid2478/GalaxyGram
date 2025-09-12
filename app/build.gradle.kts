@@ -60,6 +60,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.activity:activity-compose:1.9.2")
+    implementation("androidx.compose.material:material-icons-extended")
 
     // Core / Lifecycle / Navigation
     implementation("androidx.core:core-ktx:1.13.1")
