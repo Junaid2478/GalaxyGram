@@ -1,6 +1,6 @@
-package com.example.galaxygram.di
+package com.example.galaxygram.core.di
 
-import com.example.galaxygram.data.api.NasaApi
+import com.example.galaxygram.data.apod.NasaApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

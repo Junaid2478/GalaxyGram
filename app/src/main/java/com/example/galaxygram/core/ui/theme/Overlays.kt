@@ -1,4 +1,4 @@
-package com.example.galaxygram.ui.theme
+package com.example.galaxygram.core.ui.theme
 
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color

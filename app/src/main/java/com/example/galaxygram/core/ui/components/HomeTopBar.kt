@@ -1,4 +1,4 @@
-package com.example.galaxygram.ui.home
+package com.example.galaxygram.core.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange

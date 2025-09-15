@@ -1,7 +1,7 @@
-package com.example.galaxygram.ui.home.model
+package com.example.galaxygram.feature.list.model
 
 data class HomeState(
     val items: List<HomeItem> = emptyList(),
     val loading: Boolean = true,
-    val isRefreshing: Boolean = false
+    val error: String? = null
 )

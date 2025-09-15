@@ -1,4 +1,4 @@
-package com.example.galaxygram.ui.detail
+package com.example.galaxygram.feature.detail
 
 
 import android.content.Intent

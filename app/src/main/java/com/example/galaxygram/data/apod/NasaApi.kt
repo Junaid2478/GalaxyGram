@@ -1,4 +1,4 @@
-package com.example.galaxygram.data.api
+package com.example.galaxygram.data.apod
 
 import com.example.galaxygram.BuildConfig
 import com.example.galaxygram.data.model.ApodDto

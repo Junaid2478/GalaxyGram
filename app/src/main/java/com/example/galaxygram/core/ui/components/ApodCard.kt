@@ -1,4 +1,4 @@
-package com.example.galaxygram.ui.home
+package com.example.galaxygram.core.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,9 +22,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
-import com.example.galaxygram.ui.theme.CardGradient
-import com.example.galaxygram.ui.theme.DateChipBg
-import com.example.galaxygram.ui.theme.MediaBlue
+import com.example.galaxygram.core.ui.theme.CardGradient
+import com.example.galaxygram.core.ui.theme.DateChipBg
+import com.example.galaxygram.core.ui.theme.MediaBlue
 
 @Composable
 fun ApodCard(

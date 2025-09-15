@@ -1,4 +1,4 @@
-package com.example.galaxygram.ui.home
+package com.example.galaxygram.feature.list
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
@@ -11,7 +11,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.galaxygram.ui.home.model.HomeItem
+import com.example.galaxygram.core.ui.components.ApodCard
+import com.example.galaxygram.core.ui.components.HomeTopBar
+import com.example.galaxygram.feature.list.model.HomeItem
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

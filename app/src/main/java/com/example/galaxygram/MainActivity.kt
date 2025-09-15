@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.galaxygram.ui.navigation.GalaxyNavHost
+import com.example.galaxygram.navigation.GalaxyNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

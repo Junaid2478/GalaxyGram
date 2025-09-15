@@ -1,12 +1,12 @@
-package com.example.galaxygram.ui.home
+package com.example.galaxygram.feature.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.galaxygram.data.api.NasaApi
+import com.example.galaxygram.data.apod.NasaApi
 import com.example.galaxygram.data.model.ApodDto
-import com.example.galaxygram.ui.home.model.HomeItem
+import com.example.galaxygram.feature.list.model.HomeItem
+import com.example.galaxygram.feature.list.model.HomeState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
+import javax.inject.Inject
 
 data class HomeState(
     val items: List<HomeItem> = emptyList(),

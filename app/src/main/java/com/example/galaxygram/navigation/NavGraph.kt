@@ -1,4 +1,4 @@
-package com.example.galaxygram.ui.navigation
+package com.example.galaxygram.navigation
 
 import android.net.Uri
 import androidx.compose.runtime.Composable
@@ -7,8 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.galaxygram.ui.detail.ApodDetailScreen
-import com.example.galaxygram.ui.home.HomeScreen
+import com.example.galaxygram.feature.detail.ApodDetailScreen
+import com.example.galaxygram.feature.list.HomeScreen
 
 object Routes {
     const val LIST = "list"

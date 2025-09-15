@@ -1,4 +1,4 @@
-package com.example.galaxygram.ui.home.model
+package com.example.galaxygram.feature.list.model
 
 data class HomeItem(
     val date: String,
