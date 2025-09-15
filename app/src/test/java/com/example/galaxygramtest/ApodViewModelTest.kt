@@ -1,6 +1,5 @@
 package com.example.skeletonapp.ui.apod
 
-import com.example.galaxygram.data.model.Apod
 import com.example.skeletonapp.data.repo.ApodRepo
 import com.example.galaxygram.ui.Apod.ApodViewModel
 import kotlinx.coroutines.Dispatchers

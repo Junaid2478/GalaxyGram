@@ -1,22 +1,16 @@
 package com.example.galaxygram.data.api
 
-import com.example.galaxygram.data.model.Apod
-import retrofit2.Response
+import com.example.galaxygram.BuildConfig
+import com.example.galaxygram.data.model.ApodDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface NasaApi {
-
     @GET("planetary/apod")
-    suspend fun getApodList(
-        @Query("api_key") apiKey: String,
-        @Query("count") count: Int = 20
-    ): Response<List<Apod>>
-
-    @GET("planetary/apod")
-    suspend fun getApodByDate(
-        @Query("api_key") apiKey: String,
-        @Query("date") date: String
-    ): Response<Apod>
+    suspend fun getApodRange(
+        @Query("start_date") startDate: String,
+        @Query("end_date") endDate: String,
+        @Query("thumbs") thumbs: Boolean = true,
+        @Query("api_key") apiKey: String = BuildConfig.NASA_KEY
+    ): List<ApodDto>
 }
-

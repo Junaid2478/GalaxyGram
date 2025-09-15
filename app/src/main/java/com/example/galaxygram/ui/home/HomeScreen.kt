@@ -1,0 +1,73 @@
+package com.example.galaxygram.ui.home
+
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.galaxygram.ui.home.model.HomeItem
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun HomeScreen(
+    onOpenDetail: (HomeItem) -> Unit,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
+    val state by viewModel.state.collectAsState()
+
+    Scaffold(
+        topBar = {
+            HomeTopBar(
+                onPickDate = { viewModel.onPickDate() },
+                onRefresh = { viewModel.refresh() }
+            )
+        }
+    ) { padding ->
+        Box(Modifier.fillMaxSize().padding(padding)) {
+
+            when {
+                state.loading && state.items.isEmpty() -> {
+                    CircularProgressIndicator(Modifier.align(Alignment.Center))
+                }
+
+                state.error != null && state.items.isEmpty() -> {
+                    Column(
+                        modifier = Modifier.align(Alignment.Center),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(state.error ?: "Error")
+                        Spacer(Modifier.height(8.dp))
+                        Button(onClick = { viewModel.refresh() }) { Text("Retry") }
+                    }
+                }
+
+                else -> {
+                    LazyVerticalStaggeredGrid(
+                        columns = StaggeredGridCells.Adaptive(200.dp),
+                        contentPadding = PaddingValues(12.dp),
+                        verticalItemSpacing = 12.dp,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        items(state.items, key = { it.date }) { item ->
+                            ApodCard(
+                                title = item.title,
+                                date = item.date,
+                                imageUrl = item.imageUrl,
+                                isVideo = item.isVideo,
+                                modifier = Modifier, // if animateItem() is unresolved on your BOM, keep plain Modifier
+                                onClick = { onOpenDetail(item) }
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

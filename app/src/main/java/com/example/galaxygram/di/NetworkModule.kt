@@ -15,25 +15,25 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NasaNetworkModule {
+object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttp(): OkHttpClient =
-        OkHttpClient.Builder()
-            .addInterceptor(
-                HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BASIC
-                }
-            )
+    fun provideOkHttp(): OkHttpClient {
+        val logging = HttpLoggingInterceptor { msg ->
+            android.util.Log.d("HTTP", msg.replace(Regex("(api_key=)[^&\\s]+"), "$1███"))
+        }.apply { level = HttpLoggingInterceptor.Level.BASIC }
+
+        return OkHttpClient.Builder()
+            .addInterceptor(logging)
             .build()
+    }
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi =
-        Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())  
+        .build()
 
     @Provides
     @Singleton
