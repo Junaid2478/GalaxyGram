@@ -50,7 +50,8 @@ class HomeViewModel @Inject constructor(
                     explanation = dto.explanation,
                     imageUrl = dto.url ?: dto.thumbnail_url,
                     hdUrl = dto.hdurl,
-                    isVideo = dto.media_type != "image"
+                    isVideo = dto.media_type != "image",
+                    videoUrl = if (dto.media_type != "image") dto.url else null
                 )
             }
             _state.update { it.copy(items = items, loading = false, error = null) }

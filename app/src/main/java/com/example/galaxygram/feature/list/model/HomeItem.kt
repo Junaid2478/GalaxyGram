@@ -6,5 +6,6 @@ data class HomeItem(
     val explanation: String,
     val imageUrl: String?,
     val hdUrl: String?,
-    val isVideo: Boolean
+    val isVideo: Boolean,
+    val videoUrl: String?
 )
