@@ -52,6 +52,7 @@ android {
 dependencies {
     // Compose BOM (no per-artifact versions)
     implementation(platform("androidx.compose:compose-bom:2025.02.00"))
+    implementation(libs.media3.exoplayer)
     androidTestImplementation(platform("androidx.compose:compose-bom:2025.02.00"))
 
     implementation("androidx.compose.ui:ui")
@@ -72,6 +73,10 @@ dependencies {
 
     // Images
     implementation("io.coil-kt:coil-compose:2.7.0")
+
+    // Videos
+    implementation("androidx.media3:media3-exoplayer:1.4.1")
+    implementation("androidx.media3:media3-ui:1.4.1")
 
     // Paging + Room (KSP)
     implementation("androidx.paging:paging-runtime-ktx:3.3.2")
