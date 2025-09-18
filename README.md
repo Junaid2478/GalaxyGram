@@ -14,25 +14,35 @@ The project demonstrates modern Android development best practices:
 
 ---
 
+
 ## Features
 
-- Browse the latest NASA APOD images in a scrollable feed  
-- View additional details such as title, date, and description  
-- Loading and error handling via a sealed UiState  
-- Repository pattern to separate concerns  
+- Browse NASA APOD feed in a scrollable grid  
+- Image support with HD preview and external open option  
+- Video support  
+  - Direct MP4 playback with ExoPlayer  
+  - Inline YouTube and Vimeo playback with WebView embeds  
+  - Fallback external open for non-embeddable providers  
+- View additional details including title, date, and explanation  
+- Pull-to-refresh with error and loading handling  
+- Repository pattern and MVVM with StateFlow  
 
 ---
 
 ## Tech Stack
 
 - **Language:** Kotlin  
-- **UI:** Jetpack Compose, Material 3  
-- **Architecture:** MVVM  
+- **UI:** Jetpack Compose (Material 3, Compose BOM)  
+- **Architecture:** MVVM + Repository Pattern  
 - **Networking:** Retrofit, OkHttp, Moshi  
-- **Dependency Injection:** Hilt  
 - **Asynchronous:** Kotlin Coroutines, StateFlow  
-- **Image Loading:** Coil  
-- **Testing:** JUnit, Coroutines Test, Mockito  
+- **Dependency Injection:** Hilt  
+- **Media:**  
+  - Coil for image loading  
+  - ExoPlayer (Media3) for MP4 playback  
+  - WebView for YouTube, Vimeo, and APOD HTML embeds  
+- **Persistence (planned/partial):** Room, Paging 3  
+- **Testing:** JUnit, Coroutines Test, Mockito, MockWebServer  
 
 ---
 
@@ -43,6 +53,8 @@ The project demonstrates modern Android development best practices:
    git clone https://github.com/Junaid2478/GalaxyGram.git
 
 2. Obtain a NASA API key from api.nasa.gov and add it to local.properties
+    ```bash
+   NASA_API_KEY=your_key_here
 
 3. Open the project in Android Studio and run it on a device or emulator (API 24+).
 
