@@ -1,7 +1,7 @@
 # GalaxyGram
 
-GalaxyGram is an Android app built with Kotlin, Jetpack Compose, Hilt, and Retrofit.  
-It connects to NASA’s Astronomy Picture of the Day (APOD) API and provides a feed of daily images with detailed information.
+GalaxyGram is an Android app built with **Kotlin**, **Jetpack Compose**, **Hilt**, and **Retrofit**.  
+It connects to NASA’s [Astronomy Picture of the Day (APOD)](https://apod.nasa.gov/apod/astropix.html) API and provides a feed of daily media (images and videos) with detailed information.
 
 The project demonstrates modern Android development best practices:
 
@@ -13,7 +13,6 @@ The project demonstrates modern Android development best practices:
 - Unit testing with JUnit, Coroutines Test, and Mockito  
 
 ---
-
 
 ## Features
 
@@ -43,6 +42,16 @@ The project demonstrates modern Android development best practices:
   - WebView for YouTube, Vimeo, and APOD HTML embeds  
 - **Persistence (planned/partial):** Room, Paging 3  
 - **Testing:** JUnit, Coroutines Test, Mockito, MockWebServer  
+
+---
+
+## Screenshots
+
+### Home Screen
+<img width="354" height="704" alt="Home Screen" src="https://github.com/user-attachments/assets/72ec5900-fc11-4d78-bcf0-eee23666b23b" />
+
+### Detail Screen
+<img width="354" height="704" alt="Detail Screen" src="https://github.com/user-attachments/assets/c34cc387-1d20-4d48-b989-b8c7e22eca8f" />
 
 ---
 
