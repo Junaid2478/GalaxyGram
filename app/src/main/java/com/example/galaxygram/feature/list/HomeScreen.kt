@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.galaxygram.core.ui.components.ApodCard
 import com.example.galaxygram.core.ui.components.HomeTopBar
+import com.example.galaxygram.feature.apod.list.HomeViewModel
 import com.example.galaxygram.feature.list.model.HomeItem
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -63,7 +64,7 @@ fun HomeScreen(
                                 date = item.date,
                                 imageUrl = item.imageUrl,
                                 isVideo = item.isVideo,
-                                modifier = Modifier, // if animateItem() is unresolved on your BOM, keep plain Modifier
+                                modifier = Modifier,
                                 onClick = { onOpenDetail(item) }
                             )
                         }

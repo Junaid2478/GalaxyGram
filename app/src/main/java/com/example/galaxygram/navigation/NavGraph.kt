@@ -19,10 +19,18 @@ object Routes {
         date: String,
         explanation: String,
         imageUrl: String?,
-        hdUrl: String?
+        hdUrl: String?,
+        isVideo: Boolean,
+        videoUrl: String?
     ): String {
         fun enc(s: String?) = Uri.encode(s ?: "")
-        return "detail?title=${enc(title)}&date=${enc(date)}&explanation=${enc(explanation)}&imageUrl=${enc(imageUrl)}&hdUrl=${enc(hdUrl)}"
+        return "detail?title=${enc(title)}" +
+                "&date=${enc(date)}" +
+                "&explanation=${enc(explanation)}" +
+                "&imageUrl=${enc(imageUrl)}" +
+                "&hdUrl=${enc(hdUrl)}" +
+                "&isVideo=$isVideo" +
+                "&videoUrl=${enc(videoUrl)}"
     }
 }
 
@@ -30,6 +38,7 @@ object Routes {
 fun GalaxyNavHost() {
     val nav = rememberNavController()
     NavHost(navController = nav, startDestination = Routes.LIST) {
+
         composable(Routes.LIST) {
             HomeScreen(
                 onOpenDetail = { item ->
@@ -39,20 +48,25 @@ fun GalaxyNavHost() {
                             date = item.date,
                             explanation = item.explanation,
                             imageUrl = item.imageUrl,
-                            hdUrl = item.hdUrl
+                            hdUrl = item.hdUrl,
+                            isVideo = item.isVideo,
+                            videoUrl = item.videoUrl
                         )
                     )
                 }
             )
         }
+
         composable(
-            route = "detail?title={title}&date={date}&explanation={explanation}&imageUrl={imageUrl}&hdUrl={hdUrl}",
+            route = "detail?title={title}&date={date}&explanation={explanation}&imageUrl={imageUrl}&hdUrl={hdUrl}&isVideo={isVideo}&videoUrl={videoUrl}",
             arguments = listOf(
                 navArgument("title") { type = NavType.StringType; defaultValue = "" },
                 navArgument("date") { type = NavType.StringType; defaultValue = "" },
                 navArgument("explanation") { type = NavType.StringType; defaultValue = "" },
                 navArgument("imageUrl") { type = NavType.StringType; defaultValue = "" },
                 navArgument("hdUrl") { type = NavType.StringType; defaultValue = "" },
+                navArgument("isVideo") { type = NavType.BoolType; defaultValue = false },
+                navArgument("videoUrl") { type = NavType.StringType; defaultValue = "" },
             )
         ) { backStackEntry ->
             val args = backStackEntry.arguments!!
@@ -62,6 +76,8 @@ fun GalaxyNavHost() {
                 explanation = args.getString("explanation").orEmpty(),
                 imageUrl = args.getString("imageUrl").orEmpty().ifBlank { null },
                 hdUrl = args.getString("hdUrl").orEmpty().ifBlank { null },
+                isVideo = args.getBoolean("isVideo"),
+                videoUrl = args.getString("videoUrl").orEmpty().ifBlank { null },
                 onBack = { nav.popBackStack() }
             )
         }

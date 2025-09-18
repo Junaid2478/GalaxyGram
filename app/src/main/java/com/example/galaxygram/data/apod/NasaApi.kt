@@ -11,6 +11,6 @@ interface NasaApi {
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
         @Query("thumbs") thumbs: Boolean = true,
-        @Query("api_key") apiKey: String = BuildConfig.NASA_KEY
+        @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
     ): List<ApodDto>
 }

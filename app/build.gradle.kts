@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -18,9 +19,6 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-
-        val nasaKey = (project.findProperty("NASA_API_KEY") as String?) ?: "DEMO_KEY"
-        buildConfigField("String", "NASA_KEY", "\"$nasaKey\"")
     }
 
     buildTypes {
@@ -48,6 +46,11 @@ android {
 
     packaging { resources.excludes += "/META-INF/{AL2.0,LGPL2.1}" }
 }
+
+secrets {
+    defaultPropertiesFileName = "local.properties" // read from local.properties by default
+}
+
 
 dependencies {
     // Compose BOM (no per-artifact versions)
