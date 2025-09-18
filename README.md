@@ -48,10 +48,10 @@ The project demonstrates modern Android development best practices:
 ## Screenshots
 
 ### Home Screen
-<img width="354" height="704" alt="Home Screen" src="https://github.com/user-attachments/assets/72ec5900-fc11-4d78-bcf0-eee23666b23b" />
+<img width="354" height="704" alt="Detail Screen" src="https://github.com/user-attachments/assets/c34cc387-1d20-4d48-b989-b8c7e22eca8f" />
 
 ### Detail Screen
-<img width="354" height="704" alt="Detail Screen" src="https://github.com/user-attachments/assets/c34cc387-1d20-4d48-b989-b8c7e22eca8f" />
+<img width="354" height="704" alt="Home Screen" src="https://github.com/user-attachments/assets/72ec5900-fc11-4d78-bcf0-eee23666b23b" />
 
 ---
 
