@@ -13,13 +13,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.galaxygram.core.ui.components.ApodCard
 import com.example.galaxygram.core.ui.components.HomeTopBar
-import com.example.galaxygram.feature.apod.list.HomeViewModel
-import com.example.galaxygram.feature.list.model.HomeItem
+import com.example.galaxygram.domain.model.Apod
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
-    onOpenDetail: (HomeItem) -> Unit,
+    onOpenDetail: (Apod) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
@@ -58,14 +57,14 @@ fun HomeScreen(
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        items(state.items, key = { it.date }) { item ->
+                        items(state.items, key = { it.date }) { apod ->
                             ApodCard(
-                                title = item.title,
-                                date = item.date,
-                                imageUrl = item.imageUrl,
-                                isVideo = item.isVideo,
+                                title = apod.title,
+                                date = apod.date,
+                                imageUrl = apod.imageUrl,
+                                isVideo = apod.isVideo,
                                 modifier = Modifier,
-                                onClick = { onOpenDetail(item) }
+                                onClick = { onOpenDetail(apod) }
                             )
                         }
                     }
