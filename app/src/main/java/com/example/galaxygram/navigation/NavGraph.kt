@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.galaxygram.domain.model.Apod
 import com.example.galaxygram.feature.detail.ApodDetailScreen
 import com.example.galaxygram.feature.list.HomeScreen
 
@@ -14,23 +15,15 @@ object Routes {
     const val LIST = "list"
     const val DETAIL = "detail"
 
-    fun detailRoute(
-        title: String,
-        date: String,
-        explanation: String,
-        imageUrl: String?,
-        hdUrl: String?,
-        isVideo: Boolean,
-        videoUrl: String?
-    ): String {
+    fun detailRoute(apod: Apod): String {
         fun enc(s: String?) = Uri.encode(s ?: "")
-        return "detail?title=${enc(title)}" +
-                "&date=${enc(date)}" +
-                "&explanation=${enc(explanation)}" +
-                "&imageUrl=${enc(imageUrl)}" +
-                "&hdUrl=${enc(hdUrl)}" +
-                "&isVideo=$isVideo" +
-                "&videoUrl=${enc(videoUrl)}"
+        return "detail?title=${enc(apod.title)}" +
+                "&date=${enc(apod.date)}" +
+                "&explanation=${enc(apod.explanation)}" +
+                "&imageUrl=${enc(apod.imageUrl)}" +
+                "&hdUrl=${enc(apod.hdUrl)}" +
+                "&isVideo=${apod.isVideo}" +
+                "&videoUrl=${enc(apod.videoUrl)}"
     }
 }
 
@@ -41,18 +34,8 @@ fun GalaxyNavHost() {
 
         composable(Routes.LIST) {
             HomeScreen(
-                onOpenDetail = { item ->
-                    nav.navigate(
-                        Routes.detailRoute(
-                            title = item.title,
-                            date = item.date,
-                            explanation = item.explanation,
-                            imageUrl = item.imageUrl,
-                            hdUrl = item.hdUrl,
-                            isVideo = item.isVideo,
-                            videoUrl = item.videoUrl
-                        )
-                    )
+                onOpenDetail = { apod ->
+                    nav.navigate(Routes.detailRoute(apod))
                 }
             )
         }

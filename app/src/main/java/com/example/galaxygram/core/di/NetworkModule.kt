@@ -17,35 +17,47 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    private const val NASA_BASE_URL = "https://api.nasa.gov/"
+
     @Provides
     @Singleton
-    fun provideOkHttp(): OkHttpClient {
-        val logging = HttpLoggingInterceptor { msg ->
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor { msg ->
             android.util.Log.d("HTTP", msg.replace(Regex("(api_key=)[^&\\s]+"), "$1███"))
-        }.apply { level = HttpLoggingInterceptor.Level.BASIC }
+        }.apply { 
+            level = HttpLoggingInterceptor.Level.BASIC 
+        }
+    }
 
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(logging)
+            .addInterceptor(loggingInterceptor)
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())  
-        .build()
+    fun provideMoshi(): Moshi {
+        return Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+    }
 
     @Provides
     @Singleton
-    fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit =
-        Retrofit.Builder()
-            .baseUrl("https://api.nasa.gov/")
+    fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(NASA_BASE_URL)
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
+    }
 
     @Provides
     @Singleton
-    fun provideNasaApi(retrofit: Retrofit): NasaApi =
-        retrofit.create(NasaApi::class.java)
+    fun provideNasaApi(retrofit: Retrofit): NasaApi {
+        return retrofit.create(NasaApi::class.java)
+    }
 }
