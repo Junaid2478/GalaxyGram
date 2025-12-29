@@ -1,6 +1,5 @@
 package com.example.galaxygram.data.apod.mapper
 
-import android.net.Uri
 import com.example.galaxygram.data.model.ApodDto
 import com.example.galaxygram.domain.model.Apod
 import javax.inject.Inject
@@ -42,12 +41,24 @@ class ApodMapper @Inject constructor() {
     }
     
     private fun extractYouTubeThumbnail(url: String): String? {
-        val uri = Uri.parse(url)
         val videoId = when {
-            url.contains("youtube.com/watch") -> uri.getQueryParameter("v")
-            url.contains("youtu.be/") -> url.substringAfter("youtu.be/").substringBefore("?")
+            url.contains("youtube.com/watch") -> extractQueryParam(url, "v")
+            url.contains("youtu.be/") -> url.substringAfter("youtu.be/").substringBefore("?").substringBefore("/")
             else -> null
         }
-        return videoId?.let { "https://img.youtube.com/vi/$it/hqdefault.jpg" }
+        return videoId?.takeIf { it.isNotBlank() }?.let { 
+            "https://img.youtube.com/vi/$it/hqdefault.jpg" 
+        }
+    }
+    
+    private fun extractQueryParam(url: String, param: String): String? {
+        val queryStart = url.indexOf('?')
+        if (queryStart == -1) return null
+        
+        val query = url.substring(queryStart + 1)
+        return query.split('&')
+            .map { it.split('=', limit = 2) }
+            .find { it.size == 2 && it[0] == param }
+            ?.get(1)
     }
 }
